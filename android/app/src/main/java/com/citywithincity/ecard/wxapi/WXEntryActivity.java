@@ -23,7 +23,7 @@ public class WXEntryActivity extends DMActivity implements IWXAPIEventHandler {
 
     @Override
     protected void onSetContent(Bundle bundle) {
-//        this.setContentView(com.damai.lib.R.layout._dialog_wait);
+        this.setContentView(com.damai.lib.R.layout._dialog_wait);
 
         //注册API
         api = WXAPIFactory.createWXAPI(this, ECardConfig.WEIXIN_APPID);

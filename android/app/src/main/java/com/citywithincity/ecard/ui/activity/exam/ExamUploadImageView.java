@@ -70,7 +70,7 @@ public class ExamUploadImageView extends LinearLayout {
 		imageView = new ImageView(getContext());
 		ViewGroup viewGroup = (ViewGroup) findViewById(R.id._container);
 		viewGroup.addView(imageView, new FrameLayout.LayoutParams(
-				ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+				android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT));
 		imageView.setImageResource(R.drawable.ic_insurance_page_bg);
 		super.onFinishInflate();
 	}
@@ -186,7 +186,7 @@ public class ExamUploadImageView extends LinearLayout {
 			imageView = new ImageView(getContext());
 			ViewGroup viewGroup = (ViewGroup) findViewById(R.id._container);
 			viewGroup.addView(imageView, new FrameLayout.LayoutParams(
-					ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+					android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT));
 			imageView.setImageResource(R.drawable.diy_pages);
 		}
 		imageView.setImageBitmap(bitmap);

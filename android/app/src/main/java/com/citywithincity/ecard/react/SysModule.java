@@ -94,7 +94,7 @@ public class SysModule extends ReactContextBaseJavaModule {
 
 
     public static interface IStartActivity{
-        void start(Activity context, ReadableMap map);
+        void start(Activity context,ReadableMap map);
     }
 
     public static class StartMyDetail implements IStartActivity{

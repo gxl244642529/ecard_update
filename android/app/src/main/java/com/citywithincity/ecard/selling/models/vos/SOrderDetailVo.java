@@ -77,7 +77,7 @@ public class SOrderDetailVo implements IJsonValueObject {
 		code=json.getString("CODE");
 		attach=json.getInt("ATTACH");
 		
-		cards = new ArrayList<Card>();
+		cards = new ArrayList<SOrderDetailVo.Card>();
 		JSONArray jsonArray = json.getJSONArray("cards");
 		for (int i = 0,len = jsonArray.length(); i < len; i++) {
 			Card card = Card.fromJson(jsonArray.getJSONObject(i));

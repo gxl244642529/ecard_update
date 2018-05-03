@@ -55,11 +55,11 @@ public class ReactEnterActivity extends ReactActivity implements IViewContainer 
     }
 
     private ECardReactActivityDelegate mDelegate;
-    @Override
-    protected ReactActivityDelegate createReactActivityDelegate() {
-        mDelegate = new ECardReactActivityDelegate(this, getMainComponentName());
-        return mDelegate;
-    }
+//    @Override
+//    protected ReactActivityDelegate createReactActivityDelegate() {
+//        mDelegate = new ECardReactActivityDelegate(this, getMainComponentName());
+//        return mDelegate;
+//    }
 
 
     private boolean isPushHanled = false;

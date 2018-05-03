@@ -42,10 +42,10 @@ public class DownloadModel {
 					.findViewById(R.id._progress_bar);
 			final TextView totalTxt = (TextView) view
 					.findViewById(R.id.max_progress);
-//			final TextView progressTxt = (TextView) view
-//					.findViewById(R.id.progress_text);
+			final TextView progressTxt = (TextView) view
+					.findViewById(R.id.progress_text);
 			totalTxt.setText("");
-//			progressTxt.setText("");
+			progressTxt.setText("");
 			final IDialog pop = Alert.popup(context, view, "正在下载...", Alert.CANCEL,
 					new DialogListener() {
 
@@ -74,7 +74,7 @@ public class DownloadModel {
 						progressBar.setMax(total);
 						progressBar.setProgress(job.getCurrentBytes());
 						totalTxt.setText(String.valueOf(total));
-//						progressTxt.setText(String.valueOf(job.getCurrentBytes()));
+						progressTxt.setText(String.valueOf(job.getCurrentBytes()));
 					}
 				}
 

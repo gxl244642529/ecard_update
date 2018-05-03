@@ -16,7 +16,7 @@ public class NfcUtil {
 	 * @return
 	 */
 	public static boolean isAvailable(Context context){
-		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
+		if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
 			NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(context);
 			return nfcAdapter != null;
 		}

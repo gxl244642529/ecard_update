@@ -32,6 +32,6 @@ public interface AddrModel {
 	void add(Map<String, Object> data);
 	
 	@ApiValue(api=EDIT,params={"id",""})
-	void update(int id, Map<String, Object> data);
+	void update(int id,Map<String, Object> data);
 	
 }

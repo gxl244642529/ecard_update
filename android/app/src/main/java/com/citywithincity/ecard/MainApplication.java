@@ -41,6 +41,10 @@ public class MainApplication extends ECardApplication implements ReactApplicatio
               new MainReactPackage(),new ECardReactPackage()
       );
     }
+      @Override
+      protected String getJSMainModuleName() {
+          return "index";
+      }
   };
 
 

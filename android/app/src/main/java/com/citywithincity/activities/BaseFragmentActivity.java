@@ -16,7 +16,7 @@ import com.citywithincity.models.http.JsonTaskManager;
 import com.citywithincity.utils.ViewUtil;
 import com.damai.core.ILife;
 import com.damai.helper.ActivityResult;
-//import com.umeng.analytics.MobclickAgent;
+import com.umeng.analytics.MobclickAgent;
 
 public abstract class BaseFragmentActivity extends FragmentActivity implements IViewContainer {
 	
@@ -80,8 +80,8 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements I
 	protected void onPause() {
 		JsonTaskManager.getInstance().onPause(this);
 		super.onPause();
-//		MobclickAgent.onPageEnd(getPageName());
-//		MobclickAgent.onPause(this);
+		MobclickAgent.onPageEnd(getPageName());
+		MobclickAgent.onPause(this);
 	}
 	
 	
@@ -93,8 +93,8 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements I
 	protected void onResume() {
 		super.onResume();
 		JsonTaskManager.getInstance().onResume(this);
-//		MobclickAgent.onPageStart(getPageName()); // 统计页面
-//		MobclickAgent.onResume(this);
+		MobclickAgent.onPageStart(getPageName()); // 统计页面
+		MobclickAgent.onResume(this);
 	}
 	@Override
 	public void startActivityForResult(ActivityResult result, Intent intent,

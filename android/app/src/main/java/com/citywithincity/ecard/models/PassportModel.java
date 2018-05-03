@@ -19,14 +19,14 @@ String UPDATE_PASSWORD = "user_api/update_pass";
 	 * @param newPwd
 	 */
 	@ApiValue(api=UPDATE_PASSWORD,params={"old_pass","new_pass"},waitingMessage="正在修改密码...")
-	void updatePassword(String oldPwd, String newPwd);
+	void updatePassword(String oldPwd,String newPwd);
 
 	/**
 	 * 注册第一步
 	 * @param username
 	 * @param pwd
 	 */
-	void tryRegister(String username, String pwd, IRequestResult<Object> listener);
+	void tryRegister(String username,String pwd,IRequestResult<Object> listener);
 
 
 	

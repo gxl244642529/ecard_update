@@ -109,19 +109,19 @@ class EditorEditFragment extends AbsEditorFragment implements
 
 		@SuppressWarnings("deprecation")
 		public int getCenterX() {
-			return ((LayoutParams) getLayoutParams()).x
+			return ((AbsoluteLayout.LayoutParams) getLayoutParams()).x
 					+ pointSize / 2;
 		}
 
 		@SuppressWarnings("deprecation")
 		public int getCenterY() {
-			return ((LayoutParams) getLayoutParams()).y
+			return ((AbsoluteLayout.LayoutParams) getLayoutParams()).y
 					+ pointSize / 2;
 		}
 
 		@SuppressWarnings("deprecation")
 		public void moveCenter(int x, int y) {
-			LayoutParams lp = ((LayoutParams) getLayoutParams());
+			AbsoluteLayout.LayoutParams lp = ((AbsoluteLayout.LayoutParams) getLayoutParams());
 			lp.x = x - lp.width / 2;
 			lp.y = y - lp.height / 2;
 			setLayoutParams(lp);
@@ -318,7 +318,7 @@ class EditorEditFragment extends AbsEditorFragment implements
 
 		myEditView.setRect(rect);
 
-		LayoutParams lp = (LayoutParams) pixelView
+		AbsoluteLayout.LayoutParams lp = (LayoutParams) pixelView
 				.getLayoutParams();
 		if (textSize != null) {
 			lp.x = rect.centerX() - textSize.x / 2;
@@ -478,7 +478,7 @@ class EditorEditFragment extends AbsEditorFragment implements
 
 		myEditView = new MyEditView(getActivity());
 		myEditView.setOnTouchListener(this);
-		imageContainer.addView(myEditView, new LayoutParams(
+		imageContainer.addView(myEditView, new AbsoluteLayout.LayoutParams(
 				containerWidth, containerHeight, 0, 0));
 
 		pointViews = new MyPointView[4];
@@ -488,7 +488,7 @@ class EditorEditFragment extends AbsEditorFragment implements
 			pointViews[i].setFocusable(true);
 			pointViews[i].setOnTouchListener(onTouchListener);
 			imageContainer
-					.addView(pointViews[i], new LayoutParams(
+					.addView(pointViews[i], new AbsoluteLayout.LayoutParams(
 							pointSize, pointSize, 0, 0));
 		}
 
@@ -546,7 +546,7 @@ class EditorEditFragment extends AbsEditorFragment implements
 		int top = (destHeight - h) / 2 + PADDING;
 
 		// 璁剧疆鍥剧墖
-		LayoutParams lp = (LayoutParams) thisImageView
+		AbsoluteLayout.LayoutParams lp = (AbsoluteLayout.LayoutParams) thisImageView
 				.getLayoutParams();
 		lp.x = left;
 		lp.y = top;

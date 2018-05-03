@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-//import cn.jpush.android.api.JPushInterface;
-//import cn.jpush.android.api.TagAliasCallback;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 
 /**
  * Created by renxueliang on 17/3/30.
@@ -31,36 +31,30 @@ public class PushImpl implements IPush{
     }
 
     public void onLogout(){
-//        JPushInterface.setAlias(LifeManager.getActivity(), "", new TagAliasCallback() {
-//            @Override
-//            public void gotResult(int arg0, String arg1, Set<String> arg2) {
-//                // TODO Auto-generated method stub
-//
-//            }
-//        });
+        JPushInterface.setAlias(LifeManager.getActivity(), "", new TagAliasCallback() {
+            @Override
+            public void gotResult(int arg0, String arg1, Set<String> arg2) {
+                // TODO Auto-generated method stub
+
+            }
+        });
     }
 
     @Override
     public void onLogin(DMAccount account) {
-//        JPushInterface.setAlias(LifeManager.getActivity(), account.getAccount(), new TagAliasCallback() {
-//
-//            @Override
-//            public void gotResult(int arg0, String arg1, Set<String> arg2) {
-//                System.out.print("绑定alis成功");
-//            }
-//        });
+        JPushInterface.setAlias(LifeManager.getActivity(), account.getAccount(), new TagAliasCallback() {
+
+            @Override
+            public void gotResult(int arg0, String arg1, Set<String> arg2) {
+                System.out.print("绑定alis成功");
+            }
+        });
     }
 
-//    public String getPushId(){
-//        return JPushInterface.getRegistrationID(context);
-//    }
+    public String getPushId(){
+        return JPushInterface.getRegistrationID(context);
+    }
     private String deviceId;
-
-    @Override
-    public String getPushId() {
-        return null;
-    }
-
     @Override
     public String getUdid() {
         if (deviceId == null) {

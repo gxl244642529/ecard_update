@@ -38,7 +38,7 @@ public interface PickCardModel {
 	 * @param listener
 	 */
 	void pickupCardQuery(String card_number,
-                         IRequestResult<PickCardQueryResult> listener);
+			IRequestResult<PickCardQueryResult> listener);
 
 	/**
 	 * 
@@ -46,7 +46,7 @@ public interface PickCardModel {
 	 * @param listener
 	 */
 	@ApiObject(api=query_lost_card,params={"cardid","pushID"},clazz=MyLostCardDetailInfo.class)
-	IObjectJsonTask<MyLostCardDetailInfo> queryLostCard(String cardNumber, String pushID);
+	IObjectJsonTask<MyLostCardDetailInfo> queryLostCard(String cardNumber,String pushID);
 
 	/**
 	 * 
@@ -58,7 +58,7 @@ public interface PickCardModel {
 	 */
 	@ApiValue(api=pick_save,params={"cardid","phone","address","time","pushID"},waitingMessage="请稍等...")
 	void pulishPickCard(String cardID, String phoneNumber, String strAddr,
-                        String strTime, String pushID);
+			String strTime,String pushID);
 
 	/**
 	 * 

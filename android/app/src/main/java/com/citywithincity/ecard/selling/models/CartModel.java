@@ -35,5 +35,5 @@ public interface CartModel {
 	void add(long id, int count, int recharge, byte[] file);
 	
 	@ApiValue(api=UPDATE,params={"id","count","recharge"})
-	void update(int id, int count, int recharge);
+	void update(int id,int count,int recharge);
 }

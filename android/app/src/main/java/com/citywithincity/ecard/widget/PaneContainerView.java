@@ -60,14 +60,14 @@ public class PaneContainerView extends FrameLayout implements
 			int action = event.getAction() & MotionEvent.ACTION_MASK;
 			switch (action) {
 			case MotionEvent.ACTION_DOWN: {
-				LayoutParams lParams = (LayoutParams) mPaneButton
+				FrameLayout.LayoutParams lParams = (FrameLayout.LayoutParams) mPaneButton
 						.getLayoutParams();
 				offsetX = event.getRawX() - lParams.leftMargin;
 				offsetY = event.getRawY() - lParams.topMargin;
 			}
 				break;
 			case MotionEvent.ACTION_MOVE: {
-				LayoutParams lParams = (LayoutParams) mPaneButton
+				FrameLayout.LayoutParams lParams = (FrameLayout.LayoutParams) mPaneButton
 						.getLayoutParams();
 				int minX = 0;
 				int maxX = getWidth() - mPaneButton.getWidth();
@@ -139,7 +139,7 @@ public class PaneContainerView extends FrameLayout implements
 		
 		
 		// TODO Auto-generated method stub
-		LayoutParams lp = (LayoutParams) mPaneButton
+		FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mPaneButton
 				.getLayoutParams();
 		lp.leftMargin = 20;
 		int height = mPaneButton.getHeight();
@@ -176,7 +176,7 @@ public class PaneContainerView extends FrameLayout implements
 		}
 	};
 
-	public void createCache(int outerSize, int size, int startX, int startY,LayoutParams lp) {
+	public void createCache(int outerSize, int size, int startX, int startY,FrameLayout.LayoutParams lp) {
 		centerDestSize = mMainPane.mCenter.getWidth();
 
 		destX = lp.leftMargin +lp.width / 2;
@@ -245,7 +245,7 @@ public class PaneContainerView extends FrameLayout implements
 	}
 
 	public void setCurrent(int currentSize, int x, int y, int centerSize) {
-		LayoutParams lParams = (LayoutParams) mMainPane
+		FrameLayout.LayoutParams lParams = (FrameLayout.LayoutParams) mMainPane
 				.getLayoutParams();
 		lParams.leftMargin = x;
 		lParams.topMargin = y;
@@ -283,7 +283,7 @@ public class PaneContainerView extends FrameLayout implements
 		smallToBig = true;
 		int left;
 		int top;
-		LayoutParams lp = (LayoutParams) mPaneButton.getLayoutParams();
+		FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mPaneButton.getLayoutParams();
 		left = lp.leftMargin;
 		top = lp.topMargin;
 		startX = left + mPaneButton.getWidth() / 2;
@@ -292,7 +292,7 @@ public class PaneContainerView extends FrameLayout implements
 		dsize = destSize - startSize;
 		centerDSize = centerDestSize - centerStartSize;
 		
-		lp = (LayoutParams) mMainPane.getLayoutParams();
+		lp = (FrameLayout.LayoutParams) mMainPane.getLayoutParams();
 		lp.leftMargin = left;
 		lp.topMargin = top;
 		mMainPane.setLayoutParams(lp);

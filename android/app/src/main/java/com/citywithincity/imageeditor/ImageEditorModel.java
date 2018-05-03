@@ -23,7 +23,7 @@ import java.io.IOException;
 class ImageEditorModel implements IMemo<File>,IDestroyable {
 	
 	public interface IImageEditorListener{
-		void onEditImageComplete(int index, File file);
+		void onEditImageComplete(int index,File file);
 	}
 	
 	private File currentPath;
@@ -124,7 +124,7 @@ class ImageEditorModel implements IMemo<File>,IDestroyable {
 
 	private void calcOpts(String path) {
 		// 取出比卡大的最小大小
-		Options bmpFactoryOptions = new Options();
+		BitmapFactory.Options bmpFactoryOptions = new BitmapFactory.Options();
 		bmpFactoryOptions.inJustDecodeBounds = true;
 		BitmapFactory.decodeFile(path, bmpFactoryOptions);
 		int heightRatio = (int) Math.ceil(bmpFactoryOptions.outHeight

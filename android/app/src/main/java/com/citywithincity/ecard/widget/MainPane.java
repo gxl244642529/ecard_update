@@ -45,7 +45,7 @@ public class MainPane extends RelativeLayout  {
 	
 	
 	private void setViewSize(View back,int size){
-		LayoutParams lp = (LayoutParams)back.getLayoutParams();
+		RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)back.getLayoutParams();
 		lp.width = size;
 		lp.height = size;
 		back.setLayoutParams(lp);
@@ -65,7 +65,7 @@ public class MainPane extends RelativeLayout  {
 		mPane = findViewById(R.id.pane_bg);
 		
 		mCache = new ImageView(getContext());
-		addView(mCache,0,new LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT));
+		addView(mCache,0,new RelativeLayout.LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, android.view.ViewGroup.LayoutParams.MATCH_PARENT));
 		
 		
 		

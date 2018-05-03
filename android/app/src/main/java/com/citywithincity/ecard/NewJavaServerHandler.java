@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-//import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.JPushInterface;
 
 
 /**
@@ -266,7 +266,7 @@ public class NewJavaServerHandler extends ECardApiServerHandler{
         try {
             ECardUserInfo account = DMAccount.get();
             json.put("hash", account.getUserHash());
-//            json.put("pushId", JPushInterface.getRegistrationID(LifeManager.getActivity()));
+            json.put("pushId", JPushInterface.getRegistrationID(LifeManager.getActivity()));
             response = execute(json, DEFAULT_TIME_OUT,
                     getUrl("passport/token"), Crypt.NONE);
 

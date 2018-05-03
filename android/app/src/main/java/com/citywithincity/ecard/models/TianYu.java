@@ -57,7 +57,7 @@ public class TianYu {
 	}
 	
 	public interface ITianyuModel{
-		void startTyModule(Activity context, String moduleName, Intent intent, int requestCode) ;
+		void startTyModule(Activity context, String moduleName,Intent intent,int requestCode) ;
 	}
 
 	public static void startRecharge(Activity context, String account, String cardId, String orderId,int fee,boolean isOther) {

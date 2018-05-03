@@ -24,7 +24,7 @@ import java.util.List;
 public class SelectSchoolFragment extends PluginFragment implements IOnItemClickListener<SchoolVo>, OnItemClickListener{
 	
 	public interface SelectSchoolListener{
-		void onSelectSchool(String schoolName, String schoolCode);
+		void onSelectSchool(String schoolName,String schoolCode);
 	}
 	private EditText editText;
 	private SelectSchoolListener listener;

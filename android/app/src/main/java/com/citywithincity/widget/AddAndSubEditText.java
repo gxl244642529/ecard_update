@@ -135,7 +135,7 @@ public class AddAndSubEditText extends LinearLayout implements IWidget<Integer> 
 
 	@Override
 	public void setOnWidgetValueChangeListener(
-		OnWidgetValueChangeListener<Integer> listener) {
+		com.citywithincity.interfaces.IWidget.OnWidgetValueChangeListener<Integer> listener) {
 		this.listener = listener;
 	}
 	

@@ -85,7 +85,7 @@ public interface ECardContentModel {
 
 	@ApiDetail(api = BUSINESS_DETAIL, clazz = BusinessDetail.class, params = {
 			"id", "shop", "userID","last" })
-	void getBusinessDetail(int id, int shop, int userID, int last);
+	void getBusinessDetail(int id, int shop, int userID,int last);
 	
 	/**
 	 * 活动专区

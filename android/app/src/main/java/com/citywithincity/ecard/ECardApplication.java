@@ -36,11 +36,11 @@ import com.damai.dl.PluginManager.IApkListener;
 import com.damai.pay.AbsDMPay;
 import com.damai.push.IPush;
 import com.damai.widget.DownloadProgressDialog;
-//import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.io.File;
 
-//import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.JPushInterface;
 
 public class ECardApplication extends DMApplication implements OnDismissListener,IApkListener, ITianyuModel {
 
@@ -138,8 +138,8 @@ public class ECardApplication extends DMApplication implements OnDismissListener
 
 	//	Alert.setOnDismissListener(this);
 
-//		JPushInterface.setDebugMode(false); // 设置开启日志,发布时请关闭日志
-//		JPushInterface.init(this); // 初始化 JPush
+		JPushInterface.setDebugMode(false); // 设置开启日志,发布时请关闭日志
+		JPushInterface.init(this); // 初始化 JPush
 
 //		MessageUtil.init();
 
@@ -147,7 +147,7 @@ public class ECardApplication extends DMApplication implements OnDismissListener
 
 		// platform.clearSession();
 
-//		CrashReport.initCrashReport(getApplicationContext(), "4ee5827505", true);
+		CrashReport.initCrashReport(getApplicationContext(), "4ee5827505", true);
 	}
 
     @Override

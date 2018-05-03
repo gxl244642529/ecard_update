@@ -72,7 +72,7 @@ public class InsurancePolicyDomesticActivity extends BaseActivity implements IOn
 			
 			ListView listView = (ListView) findViewById(R.id._list_view);
 			
-			ListDataProvider<Insurant> dataProvider = new ListDataProvider<Insurant>(this, R.layout.item_view_insurance_policy_domestic, new IListDataProviderListener<Insurant>() {
+			ListDataProvider<Insurant> dataProvider = new ListDataProvider<InsurancePolicyVo.Insurant>(this, R.layout.item_view_insurance_policy_domestic, new IListDataProviderListener<Insurant>() {
 
 				@Override
 				public void onInitializeView(View view, Insurant data,

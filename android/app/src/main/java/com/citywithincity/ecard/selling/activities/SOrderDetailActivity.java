@@ -142,7 +142,7 @@ public class SOrderDetailActivity extends BaseActivity implements
 		}
 
 		listView = (ListView) findViewById(R.id._list_view);
-		cardDataProvider = new ListDataProvider<Card>(this,
+		cardDataProvider = new ListDataProvider<SOrderDetailVo.Card>(this,
 				R.layout.s_item_order_detail_card, this);
 		listView.setAdapter(cardDataProvider);
 

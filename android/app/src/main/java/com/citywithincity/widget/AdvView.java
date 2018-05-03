@@ -43,7 +43,7 @@ public class AdvView<T> extends RelativeLayout implements IDestroyable, OnPageCh
 	private ViewPagerIndicator indicator;
 	
 	public interface OnClickAdvViewListener<T>{
-		void onClickAdvView(View view, int index, T data);
+		void onClickAdvView(View view,int index,T data);
 	}
 	
 	

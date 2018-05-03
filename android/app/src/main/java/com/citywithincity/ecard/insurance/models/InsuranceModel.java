@@ -125,7 +125,7 @@ public interface InsuranceModel {
 	 */
 	@Crypt(Crypt.UPLOAD)
 	@ApiValue(api=LOST,params={"orderId","idCard","addr","name","phone"},factory=1,waitingMessage="请稍后……")
-	IValueJsonTask<Boolean> lost(String orderID, String idCard, String addr, String name, String phone);
+	IValueJsonTask<Boolean> lost(String orderID,String idCard,String addr,String name,String phone);
 
 	/**
 	 * 检测身份证是否可以购买
@@ -145,7 +145,7 @@ public interface InsuranceModel {
 	 */
 	@Crypt(Crypt.BOTH)
 	@ApiDetail(api=CLIENT_NOTIFY,clazz=InsuranceClientNotifySuccessVo.class,params={"id","id_card","phone","addr","name"},factory=1,waitingMessage="请稍后……")
-	IDetailJsonTask<InsuranceClientNotifySuccessVo> clientNotify(String id, String idCard, String phone, String addr, String name);
+	IDetailJsonTask<InsuranceClientNotifySuccessVo> clientNotify(String id,String idCard,String phone, String addr, String name);
 	
 	@ApiDetail(api=RECIEVER_INFO,params={"orderId"},clazz=InsuranceRecieverInfoVo.class,factory=1,cachePolicy=CachePolicy.CachePolity_NoCache)
 	IDetailJsonTask<InsuranceRecieverInfoVo> getRecieverInfo(String orderId);
@@ -167,7 +167,7 @@ public interface InsuranceModel {
 	 */
 	@Crypt(Crypt.UPLOAD)
 	@ApiValue(api=CHECK_DATA,params={"cardId","ticket","idCard"},factory=1)
-	IValueJsonTask<Boolean> checkData(String cardId, String ticket, String idCard);
+	IValueJsonTask<Boolean> checkData(String cardId,String ticket,String idCard);
 	
 	/**
 	 * 检查是否可以购买
@@ -178,7 +178,7 @@ public interface InsuranceModel {
 	 */
 	@Crypt(Crypt.BOTH)
 	@ApiValue(api=CHECK_DATA_INSURED,params={"idCard","inId","count"},factory=1)
-	IValueJsonTask<Boolean> checkDataInsured(String idCard, String inId, int count);
+	IValueJsonTask<Boolean> checkDataInsured(String idCard,String inId,int count);
 	
 	/**
 	 * 获取我的联系人
@@ -208,7 +208,7 @@ public interface InsuranceModel {
 	 * 增加地址
 	 */
 	@ApiValue(api=INSURANCE_ADDR_DELETE,params={"sheng","shengId","shi","shiId","qu","quId","addr"},factory=1)
-	IValueJsonTask<Long> addInsuranceId(String sheng, int shengId, String shi, int shiId, String qu, int quId, String addr);
+	IValueJsonTask<Long> addInsuranceId(String sheng,int shengId,String shi, int shiId,String qu,int quId,String addr);
 	
 	/**
 	 * 未付款订单，支付

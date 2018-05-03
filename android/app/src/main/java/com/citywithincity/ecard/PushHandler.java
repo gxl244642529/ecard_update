@@ -17,8 +17,8 @@ import org.json.JSONObject;
 
 import java.util.Set;
 
-//import cn.jpush.android.api.JPushInterface;
-//import cn.jpush.android.api.TagAliasCallback;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 
 public class PushHandler {
 	public static final int PUSH_RECHARGE_CONSUM = 2; // 消费
@@ -99,13 +99,13 @@ public class PushHandler {
     public static void handleSingleLogin(Context context){
         //单点登录
         DMAccount.logout();
-//        JPushInterface.setAlias(LifeManager.getActivity(), "", new TagAliasCallback() {
-//            @Override
-//            public void gotResult(int arg0, String arg1, Set<String> arg2) {
-//                // TODO Auto-generated method stub
-//
-//            }
-//        });
+        JPushInterface.setAlias(LifeManager.getActivity(), "", new TagAliasCallback() {
+            @Override
+            public void gotResult(int arg0, String arg1, Set<String> arg2) {
+                // TODO Auto-generated method stub
+
+            }
+        });
         if(JsonTaskManager.getInstance()!=null)JsonTaskManager.getInstance().logout();
         AccountModule.onLogout();
         if (PackageUtil.isRunning(context, ReactEnterActivity.class)) {

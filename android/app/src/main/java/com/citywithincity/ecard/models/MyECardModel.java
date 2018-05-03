@@ -44,7 +44,7 @@ public interface MyECardModel {
 	 * @param pretypey
 	 */
 	@ApiValue(api=ECARD_BIND,params={"cardid","name","pretype","last"},waitingMessage="正在绑卡...")
-	void bindECard(String cardNumber, String name, int pretypey, int last);
+	void bindECard(String cardNumber, String name, int pretypey,int last);
 
 	@ApiValue(api=ECARD_UNBIND,params={"card"})
 	void unbindECard(String cardNumber);
@@ -61,8 +61,8 @@ public interface MyECardModel {
 	IArrayJsonTask<ECardInfo> getList();
 	
 	@ApiObject(api="ecard_bind_member",clazz=Null.class,params={"card","name","sex","phone","idcode","address"})
-	void updateMemberInfo(String cardId, String name, int sex, String phone,
-                          String idCode, String address);
+	void updateMemberInfo(String cardId,String name, int sex, String phone,
+				String idCode,String address);
 
 	@ApiDetail(api=ECARD_DETAIL,clazz=ECardDetail.class,params={"cardid"})
 	IDetailJsonTask<ECardDetail> getDetail(String cardNumber);

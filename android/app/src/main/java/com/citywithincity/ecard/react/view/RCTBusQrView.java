@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
-//import net.glxn.qrgen.android.QRCode;
+import net.glxn.qrgen.android.QRCode;
 
 import java.io.ByteArrayOutputStream;
 

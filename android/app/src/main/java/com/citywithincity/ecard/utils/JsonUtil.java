@@ -202,7 +202,7 @@ public class JsonUtil {
 			
 			group.add(info);
 		}
-		Collections.sort(group, new ComparatorDistance());
+		Collections.sort(group, new JsonUtil.ComparatorDistance());
 		return group;
 
 	}

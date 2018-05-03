@@ -24,7 +24,7 @@ public class CartBModel extends Model implements IListTask,IListRequsetResult<Li
 
 	public static final String PRICE_HAS_CHANGED = "PRICE_HAS_CHANGED";
 	public interface IOnCartItemChangeListener{
-		void onChange(int count, int recharge);
+		void onChange(int count,int recharge);
 	}
 
 

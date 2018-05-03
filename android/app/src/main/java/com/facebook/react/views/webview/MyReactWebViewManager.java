@@ -136,7 +136,7 @@ import org.json.JSONException;
  *  - canGoBack - boolean, whether there is anything on a history stack to go back
  *  - canGoForward - boolean, whether it is possible to request GO_FORWARD command
  */
-@ReactModule(name = MyReactWebViewManager.REACT_CLASS)
+@ReactModule(name = com.facebook.react.views.webview.MyReactWebViewManager.REACT_CLASS)
 public class MyReactWebViewManager extends SimpleViewManager<WebView> {
 
     protected static final String REACT_CLASS = "MyWebView";
@@ -171,7 +171,7 @@ public class MyReactWebViewManager extends SimpleViewManager<WebView> {
             super.onPageFinished(webView, url);
 
             if (!mLastLoadFailed) {
-                ReactWebView reactWebView = (ReactWebView) webView;
+                com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView reactWebView = (com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView) webView;
                 reactWebView.callInjectedJavaScript();
                 reactWebView.linkBridge();
                 emitFinishEvent(webView, url);
@@ -193,7 +193,7 @@ public class MyReactWebViewManager extends SimpleViewManager<WebView> {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
-            if( ((ReactWebView)view).shouldOverride(url)  ){
+            if( ((com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView)view).shouldOverride(url)  ){
                 dispatchEvent(view,new OverrideLoadEvent(url));
                 return true;
             }
@@ -278,9 +278,9 @@ public class MyReactWebViewManager extends SimpleViewManager<WebView> {
         private boolean messagingEnabled = false;
 
         private class ReactWebViewBridge {
-            ReactWebView mContext;
+            com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView mContext;
 
-            ReactWebViewBridge(ReactWebView c) {
+            ReactWebViewBridge(com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView c) {
                 mContext = c;
             }
 
@@ -338,7 +338,7 @@ public class MyReactWebViewManager extends SimpleViewManager<WebView> {
 
             messagingEnabled = enabled;
             if (enabled) {
-                addJavascriptInterface(new ReactWebViewBridge(this), BRIDGE_NAME);
+                addJavascriptInterface(new com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView.ReactWebViewBridge(this), BRIDGE_NAME);
                 linkBridge();
             } else {
                 removeJavascriptInterface(BRIDGE_NAME);
@@ -405,7 +405,7 @@ public class MyReactWebViewManager extends SimpleViewManager<WebView> {
 
     @Override
     protected WebView createViewInstance(final ThemedReactContext reactContext) {
-        ReactWebView webView = new ReactWebView(reactContext);
+        com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView webView = new com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView(reactContext);
         webView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
@@ -462,7 +462,7 @@ public class MyReactWebViewManager extends SimpleViewManager<WebView> {
     @ReactProp(name="overrideRegexp")
     public void setOverrideRegexp(WebView view,String regexp){
 
-        ((ReactWebView) view)
+        ((com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView) view)
                 .setOverrideRegexp(regexp);
 
     }
@@ -481,12 +481,12 @@ public class MyReactWebViewManager extends SimpleViewManager<WebView> {
 
     @ReactProp(name = "injectedJavaScript")
     public void setInjectedJavaScript(WebView view, @Nullable String injectedJavaScript) {
-        ((ReactWebView) view).setInjectedJavaScript(injectedJavaScript);
+        ((com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView) view).setInjectedJavaScript(injectedJavaScript);
     }
 
     @ReactProp(name = "messagingEnabled")
     public void setMessagingEnabled(WebView view, boolean enabled) {
-        ((ReactWebView) view).setMessagingEnabled(enabled);
+        ((com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView) view).setMessagingEnabled(enabled);
     }
 
     @ReactProp(name = "source")
@@ -561,7 +561,7 @@ public class MyReactWebViewManager extends SimpleViewManager<WebView> {
     @Override
     protected void addEventEmitters(ThemedReactContext reactContext, WebView view) {
         // Do not register default touch emitter and let WebView implementation handle touches
-        view.setWebViewClient(new ReactWebViewClient());
+        view.setWebViewClient(new com.facebook.react.views.webview.MyReactWebViewManager.ReactWebViewClient());
     }
 
     @Override
@@ -620,8 +620,8 @@ public class MyReactWebViewManager extends SimpleViewManager<WebView> {
     @Override
     public void onDropViewInstance(WebView webView) {
         super.onDropViewInstance(webView);
-        ((ThemedReactContext) webView.getContext()).removeLifecycleEventListener((ReactWebView) webView);
-        ((ReactWebView) webView)
+        ((ThemedReactContext) webView.getContext()).removeLifecycleEventListener((com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView) webView);
+        ((com.facebook.react.views.webview.MyReactWebViewManager.ReactWebView) webView)
                 .cleanupCallbacksAndDestroy();
     }
 

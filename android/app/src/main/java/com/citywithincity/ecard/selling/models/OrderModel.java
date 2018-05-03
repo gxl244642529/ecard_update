@@ -53,7 +53,7 @@ public interface OrderModel {
 	IDetailJsonTask<SOrderDetailVo> getDetail(String id);
 	
 	@ApiValue(api=SUBMIT,waitingMessage="正在提交订单,请稍候...",params={"address_id","title","list","invoice"})
-	void submit(int addrId, String title, List<Map<String, Object>> array, int invoice);
+	void submit(int addrId, String title, List<Map<String,Object>> array, int invoice);
 	
 	/**
 	 * 
@@ -61,7 +61,7 @@ public interface OrderModel {
 	 * @param type	PayModel.PayType
 	 */
 	@ApiValue(api=PAY,params={"id","type"})
-	void pay(String id, int type);
+	void pay(String id,int type);
 	
 	@ApiValue(api=CLOSE,params={"id"})
 	void close(String id);
@@ -76,7 +76,7 @@ public interface OrderModel {
 	void nofityServer(String verify);
 	
 	@ApiArray(api=LIST_STATES,clazz=SOrderListVo.class,params={"state"})
-	IArrayJsonTask<SOrderListVo> getListState(int position, int state);
+	IArrayJsonTask<SOrderListVo> getListState(int position,int state);
 	
 	/**
 	 * 支付成功

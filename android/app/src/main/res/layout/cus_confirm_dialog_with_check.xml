@@ -59,10 +59,10 @@
                 android:layout_above="@id/_bottom_bar"
                 android:background="@color/cus_dialog_line" />
 
-            <!--<include-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--layout="@layout/cus_dialog_bottom" />-->
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/cus_dialog_bottom" />
         </LinearLayout>
     </RelativeLayout>
 

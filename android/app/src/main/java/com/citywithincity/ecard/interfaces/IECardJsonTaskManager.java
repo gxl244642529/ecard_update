@@ -68,6 +68,6 @@ public interface IECardJsonTaskManager extends IJsonTaskManager {
 
 	void getVersionInfo(IRequestResult<CheckVersionResult> listener);
 	
-	void updatePushID(String registrationID, IRequestResult<Boolean> iRequestResult);
+	void updatePushID(String registrationID,IRequestResult<Boolean> iRequestResult);
 	
 }

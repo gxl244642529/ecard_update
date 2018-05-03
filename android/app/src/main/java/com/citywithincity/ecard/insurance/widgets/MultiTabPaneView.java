@@ -29,7 +29,7 @@ public class MultiTabPaneView extends RelativeLayout implements OnViewPagerSwitc
 		 * @param index
 		 * @param firstSwitch
 		 */
-		void onTabPaneViewSwitch(View view, int index, boolean firstSwitch);
+		void onTabPaneViewSwitch(View view,int index,boolean firstSwitch);
 	}
 	
 	

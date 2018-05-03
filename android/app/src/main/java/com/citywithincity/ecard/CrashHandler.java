@@ -248,7 +248,7 @@ public class CrashHandler implements UncaughtExceptionHandler, Runnable {
 	}
 	
 	public interface CrashUploader{
-		void update(String deviceInfo, String crashInfo);
+		void update(String deviceInfo,String crashInfo);
 	}
 
 	@Override
@@ -272,27 +272,27 @@ public class CrashHandler implements UncaughtExceptionHandler, Runnable {
 
 				}
 				int version = 3;
-				Class<Build.VERSION> build_version_class = Build.VERSION.class;
+				Class<android.os.Build.VERSION> build_version_class = android.os.Build.VERSION.class;
 				// 取得 android 版本
-				Field field;
+				java.lang.reflect.Field field;
 				try {
 					field = build_version_class.getField("SDK_INT");
-					version = (Integer) field.get(new Build.VERSION());
+					version = (Integer) field.get(new android.os.Build.VERSION());
 
-					Class<Build> build_class = Build.class;
+					Class<android.os.Build> build_class = android.os.Build.class;
 					// 取得牌子
-					Field manu_field = build_class
+					java.lang.reflect.Field manu_field = build_class
 							.getField("MANUFACTURER");
 					String manufacturer = (String) manu_field
-							.get(new Build());
+							.get(new android.os.Build());
 					// 取得型號
-					Field field2 = build_class.getField("MODEL");
-					String model = (String) field2.get(new Build());
+					java.lang.reflect.Field field2 = build_class.getField("MODEL");
+					String model = (String) field2.get(new android.os.Build());
 					// 模組號碼
-					Field device_field = build_class
+					java.lang.reflect.Field device_field = build_class
 							.getField("DEVICE");
 					String device = (String) device_field
-							.get(new Build());
+							.get(new android.os.Build());
 					final String deviceInfo =new StringBuilder(manufacturer).append( " :" ).append( model)
 							.append(" :")
 							.append(version).append( " :" ).append( device).toString();
