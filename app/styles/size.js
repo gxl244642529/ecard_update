@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-} from 'react-native';
+import React, {Component} from 'react'
+import{
+  StyleSheet
+} from 'react-native'
 
 
-export default StyleSheet.create({
-  header:{
+
+export default  Size = StyleSheet.create({
+  LargeTitleSize28:{
     fontSize:28,
-    color:'#262626',
     fontWeight:'300',
+  },
+  fontSize14:{
+    fontSize:14
   }
-});
+
+})

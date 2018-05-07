@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+
+import {
+  View,
+  TouchableOpacity,
+  Text
+} from 'react-native';
 import JPushModule from 'jpush-react-native';
+import LargeTitle from '../widget/LargeTitle'
 export default class TestJpush extends Component {
   constructor(props) {
     super(props);
@@ -33,14 +39,25 @@ export default class TestJpush extends Component {
     JPushModule.removeReceiveCustomMsgListener();
     JPushModule.removeReceiveNotificationListener();
   }
-  _onPress = () => {
-    this.props.navigation.navigate('/test/name');
-  };
+  // _onPress = () => {
+  //   this.props.navigation.navigate('/test/name');
+  // };
+  _view=()=>{
+    return(
+      <View style={{height:800}}>
+        <Text>asdfads</Text>
+      </View>
+    )
+  }
   render() {
     return (
-      <TouchableOpacity onPress={this._onPress}>
-        <Text>测试</Text>
-      </TouchableOpacity>
+
+        <LargeTitle navigation={this.props.navigation} title="测速">
+        <View style={{height:800}}>
+          <Text>asdfads</Text>
+        </View>
+        </LargeTitle>
+
     );
   }
 }

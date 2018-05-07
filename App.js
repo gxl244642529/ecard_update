@@ -14,7 +14,7 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <Push>
-        <Navigation />
+          <Navigation />
         </Push>
       </Provider>
     );

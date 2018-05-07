@@ -100,6 +100,12 @@ class  MenuButton extends Component{
     );
   }
 }
+class  ActionBar extends Component{
+  constructor(props) {
+    super(props);
+  }
+
+}
 export default class  Home extends Component{
   constructor(props) {
     super(props);
