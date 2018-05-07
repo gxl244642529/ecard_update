@@ -9,61 +9,60 @@ import {
     Button,
     TouchableOpacity,
     AsyncStorage,
-    View
+    View,
+    ScrollView
 } from 'react-native';
 // import ColorUtil from './ColorUtil'
 import AnalyticsUtil from '../lib/AnalyticsUtil'
 import NavHelper from '../lib/NavHelper'
+import wordStyle from '../styles/size'
 export default class UserCenter extends Component {
+  static navigationOptions={
+  }
+  constructor(props){
+    super(props);
+    this.state={
+    }
+  }
 
     _onPress=()=>{
       console.log("测试简单的自定义事件")
       AnalyticsUtil.onEvent("test");
-        NavHelper.push('TestGesture');
-        var hash = "123";
-        var js = `{
-        	hash:'${hash}'
-        }`;
-        console.log(js);
+      NavHelper.push('TestGesture');
+
+    }
+    onScroll=(e)=>{
+      let y = e.nativeEvent.contentOffset.y;
+      console.log(y);
+      if(y > 15){
+          let opacity;
+          if(y>30){
+            opacity = 1;
+          }else {
+            opacity = y/100;
+          }
+          this.props.navigation.setParams({headerTitle:'卟噔充值'})
+          this.props.navigation.setParams({headerTitleStyle: {  alignSelf:'center',fontSize:14,opacity:opacity}})
+      }else{
+          this.props.navigation.setParams({headerTitle:''})
+      }
     }
     render() {
         const { navigate } = this.props.navigation;
 
         return (
-            <View style={styles.u_c}>
-              <TouchableOpacity onPress={this._onPress}>
-                <Text>测试简单的集成事件</Text>
-              </TouchableOpacity>
+          <ScrollView onScroll={this.onScroll}>
+            <View style={{backgroundColor:'#fff',paddingLeft:15}}>
+              <Text style={wordStyle.header}>卟噔充值</Text>
             </View>
+            <View style={{height:800,backgroundColor:'red'}}>
+                <Text style={wordStyle.header}>测试</Text>
+            </View>
+          </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    u_c: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        // backgroundColor: ColorUtil.background,
-    },
-    u_c_item: {
-        margin: 10,
-        // backgroundColor: ColorUtil.default_primary_color,
-        elevation: 10,
-        // borderColor: ColorUtil.default_primary_color,
 
-        borderWidth: 1.5,
-        shadowOffset: {width: 0, height: 0},
-        // shadowColor: ColorUtil.default_primary_color,
-        shadowOpacity: 1,
-        shadowRadius: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-
-    },
-    u_c_text: {
-        fontSize:24,
-
-        // color: ColorUtil.text_primary_color
-    },
 });

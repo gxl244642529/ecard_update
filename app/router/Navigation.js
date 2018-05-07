@@ -38,16 +38,19 @@ import {
   My_Fou,My_NoFou
 } from '../resources/ImageResources'
 
+
 const StackOptions = ({navigation}) => {
 
 
   return {
-      headerTintColor: '#333333',
-      headerStyle:{height:80 },
+      headerTintColor: '#606060',
+      headerStyle:{height:45,elevation: 0 },
       headerBackTitle:null,
-      headerTitleStyle : {left:0,fontSize:25,fontWeight:'500'},
-      headerLeft:<BackButton/>,
-      headerRight:( <Text ></Text> )
+      headerTitleStyle : navigation.state.params&&navigation.state.params.headerTitleStyle,
+      headerLeft:<BackButton onPress={()=>{navigation.goBack()}}/>,
+      headerRight:( <Text ></Text> ),
+      headerTitle:navigation.state.params&&navigation.state.params.headerTitle
+
     };
 };
 const LicaiTab = TabNavigator({
@@ -139,9 +142,10 @@ const Tab = TabNavigator({
       showIcon:true,
       activeTintColor:'#ffb33a',
       inactiveTintColor:'#bfbfbf',
-      style:{backgroundColor:'#ffffff',paddingTop:6.5},
+      style:{backgroundColor:'#fff',paddingTop:6},
       labelStyle: {fontSize:14,marginTop:3},
-      indicatorStyle:{height:0}
+      indicatorStyle:{height:0},
+      tabStyle:{height:60,}
   }
 
 });
@@ -172,13 +176,11 @@ export default  AppNavigator = StackNavigator({
   //     headerTitle:'测试推送'
   //   }
   // },
-  // TestHead:{
-  //   screen:TestHead,
-  //   path:'test/TestHead',
-  //   navigationOptions:{
-  //         headerTitle:'测试',
-  //       }
-  // },
+  TestHead:{
+    screen:TestHead,
+    path:'test/TestHead',
+
+  },
   // TestGesture:{screen:TestGesture,  navigationOptions:{
   //       header:null,
   //     }},

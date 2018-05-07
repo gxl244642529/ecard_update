@@ -9,6 +9,7 @@ import {
   Image,
   ScrollView,
   Dimensions,
+  ImageBackground
 } from 'react-native';
 import Alert from '../../lib/Alert'
 import Sms from '../../lib/Sms'
@@ -40,6 +41,65 @@ class Header extends Component{
     )
   }
 }
+class MainButton extends Component{
+  constructor(props) {
+    super(props);
+  }
+  _renderMainItemButton=(data,index)=>{
+    return(
+      <TouchableOpacity style={{alignItems:'center'}} key={index} onPress={this.props.onPress}>
+          <Image source={data.thumbnail} style={{width:75,height:75}} resizeMode='contain'></Image>
+          <Text style={{marginTop:-5,fontSize:14,color:'#515151'}}>{data.title}</Text>
+        </TouchableOpacity>
+    )
+  }
+  render(){
+    const {data} = this.props;
+    return(
+      <View style={{backgroundColor:'#fff',flexDirection:'row',justifyContent:'space-around',paddingBottom:15,paddingLeft:15,paddingRight:15}}>
+        {data&&data.map(this._renderMainItemButton)}
+      </View>
+    )
+  }
+}
+class  MenuButton extends Component{
+  constructor(props) {
+    super(props);
+  }
+  _rendeItem=(data)=>{
+    return(
+      <TouchableOpacity style={{alignItems:'center',justifyContent:'center',width:150,height:60}}>
+          <Image source={data.thumbnail} style={{width:22,height:24}} resizeMode="contain"/>
+          <Text style={{marginTop:8,color:'#262626'}}>{data.title}</Text>
+      </TouchableOpacity>
+    );
+  }
+  _renderMenuItem=(data,index)=>{
+    return(
+        <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',paddingLeft:15,paddingRight:15,paddingTop:15}} key={index}>
+            {this._rendeItem(data[0])}
+            {this._rendeItem(data[1])}
+            {this._rendeItem(data[2])}
+            {this._rendeItem(data[3])}
+        </View>
+    )
+  }
+  render(){
+    const {data} = this.props;
+    var rownum = data.length/4;
+    var arr = [];
+    var j = 0;
+    for (var i = 0; i < rownum; i++) {
+      arr.push([data[j],data[j+1],data[j+2],data[j+3]])
+      j=j+4;
+    }
+    return(
+      <View style={{backgroundColor:'#fff',marginTop:5}}>
+          {arr&&arr.map(this._renderMenuItem)}
+      </View>
+    );
+  }
+}
 export default class  Home extends Component{
   constructor(props) {
     super(props);
@@ -47,9 +107,28 @@ export default class  Home extends Component{
       {thumbnail:require('./images/card_d1.png')} ,
       {thumbnail:require('./images/card_d1.png')} ,
       {thumbnail:require('./images/card_d1.png')} ,
+    ];
+    let mainImg = [
+      {thumbnail:require('./images/recharge.png'),title:"卟噔充值"} ,
+      {thumbnail:require('./images/buy.png'),title:"买卡"} ,
+      {thumbnail:require('./images/myecard.png'),title:"我的e通卡"} ,
+      {thumbnail:require('./images/openlost.png'),title:"挂失服务"} ,
+    ];
+    let menuImg =[
+      {thumbnail:require('./images/discard.png'),title:"优惠卡办理",ismore:false} ,
+      {thumbnail:require('./images/exam.png'),title:"年审",ismore:false} ,
+      {thumbnail:require('./images/ticket.png'),title:"电子发票",ismore:false} ,
+      {thumbnail:require('./images/netpot.png'),title:"网点查询",ismore:false} ,
+      {thumbnail:require('./images/blue.png'),title:"蓝牙充值",ismore:false} ,
+      {thumbnail:require('./images/lost.png'),title:"拾卡不昧",ismore:false} ,
+      {thumbnail:require('./images/bus.png'),title:"公交查询",ismore:false} ,
+      {thumbnail:require('./images/more.png'),title:"更多",ismore:true} ,
     ]
+
     this.state={
       entries:images,
+      mainImg:mainImg,
+      menuImg:menuImg
     }
 
   }
@@ -57,21 +136,6 @@ export default class  Home extends Component{
         console.log(WIDTH)
   }
   _onPress=()=>{
-    // Sms.send("18950167506",(result)=>{
-    //   Alert.toast(result);
-    //   console.log(result);
-    // })
-    // Sms.submitCode("18459150681","8681",(result)=>{
-    //
-    //   Alert.alert(result);
-    // })
-
-    // Share.share((resulet)=>{
-    //   console.log(resulet);
-    // })
-    // let data ={table:"adv",fields:"*",condition:[{"field":"AD_ID","sign":"=","value":"0"}]}
-    // let sdata = {type:"fetch",curd:{table:"adv",fields:"*",condition:[{field:"AD_ID",sign:"=",value:"0"}]}}
-    // let data ={list:[sdata,sdata]}
     let update = {curd:"update",data:{table:"adv",fields:[{field:"AD_TITLE",value:"修改标题"}],condition:[{field:"AD_ID",sign:"=",value:"0"}]}}
     let fetch= {curd:"fetch",data:{table:"adv",fields:"AD_ID,AD_TITLE",condition:[{field:"AD_ID",sign:"=",value:"0"}]}}
     let data = {list:[update,fetch]}
@@ -85,11 +149,9 @@ export default class  Home extends Component{
     })
 
   }
-  _renderItem ({item, index}, parallaxProps) {
-    console.log("测试")
-    console.log(item)
+  _renderCardItem ({item, index}, parallaxProps) {
     return (
-        <View >
+        <TouchableOpacity >
             <ParallaxImage
                 source={ item.thumbnail}
                 containerStyle={{height:188}}
@@ -98,26 +160,26 @@ export default class  Home extends Component{
                 {...parallaxProps}
             />
 
-        </View>
+        </TouchableOpacity>
     );
 }
   render() {
      return (
-       <ScrollView >
+       <ScrollView style={{backgroundColor:'#fff'}}>
 
           <Header onPress={()=>{this._onPress()}}/>
 
-          <View style={{backgroundColor:'#fff',paddingTop:11}}>
+          <View style={{backgroundColor:'#fff',paddingTop:6}}>
             <Carousel
               data={this.state.entries}
-              renderItem={this._renderItem}
+              renderItem={this._renderCardItem}
               sliderWidth={WIDTH}
               itemWidth={310}
               hasParallaxImages={true}
             />
-        </View>
-
-
+            <MainButton data={this.state.mainImg}/>
+            <MenuButton data={this.state.menuImg}/>
+          </View>
        </ScrollView>
      );
    }

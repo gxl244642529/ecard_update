@@ -13,9 +13,14 @@ export default class BackButton extends Component {
   }
   render(){
     return(
-      <TouchableOpacity style={{padding:15,}} onPress={this.props.onPress}>
+      <TouchableOpacity style={styles.backbutton} onPress={this.props.onPress}>
         <BackIcon/>
       </TouchableOpacity>
     );
   }
 }
+const styles = StyleSheet.create({
+  backbutton:{
+     height:45,width:40,justifyContent:'center',alignItems:'center',
+  }
+})
