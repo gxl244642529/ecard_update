@@ -28,7 +28,13 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
+import cn.jpush.reactnativejpush.JPushPackage;
+
 public class MainApplication extends ECardApplication implements ReactApplication, DMLoginCaller, LocationListener {
+  // 设置为 true 将不会弹出 toast
+  private boolean SHUTDOWN_TOAST = false;
+  // 设置为 true 将不会打印 log
+  private boolean SHUTDOWN_LOG = false;
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
@@ -38,7 +44,10 @@ public class MainApplication extends ECardApplication implements ReactApplicatio
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.asList(
-              new MainReactPackage(),new ECardReactPackage()
+              new MainReactPackage(),
+              new ECardReactPackage(),
+             new JPushPackage(SHUTDOWN_TOAST, SHUTDOWN_LOG)   //  <-- 添加 JPushPackage
+
       );
     }
       @Override

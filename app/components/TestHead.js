@@ -17,8 +17,7 @@ import AnalyticsUtil from '../lib/AnalyticsUtil'
 import NavHelper from '../lib/NavHelper'
 import wordStyle from '../styles/size'
 export default class UserCenter extends Component {
-  static navigationOptions={
-  }
+
   constructor(props){
     super(props);
     this.state={

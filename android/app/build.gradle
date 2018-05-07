@@ -23,13 +23,13 @@ android {
         release {
             keyAlias 'e通卡'
             keyPassword 'shopet.net'
-            storeFile file('/key_etongka_shopet.net_new')
+            storeFile file('key_etongka_shopet.net_new')
             storePassword 'shopet.net'
         }
         debug {
             keyAlias 'e通卡'
             keyPassword 'shopet.net'
-            storeFile file('/key_etongka_shopet.net_new')
+            storeFile file('key_etongka_shopet.net_new')
             storePassword 'shopet.net'
         }
     }
@@ -39,6 +39,11 @@ android {
         targetSdkVersion 22
         versionCode 2710
         versionName "2.7.1"
+        manifestPlaceholders = [
+                JPUSH_APPKEY: "21d2e557a752ec7fd4289483",
+                APP_CHANNEL : "default"
+        ]
+
         multiDexEnabled true
         signingConfig signingConfigs.release
         ndk {
@@ -168,6 +173,8 @@ def releaseTime() {
 }
 
 dependencies {
+    compile project(':jcore-react-native')
+    compile project(':jpush-react-native')
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.mylhyl:acp:1.1.5'

@@ -35,6 +35,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import cn.jpush.android.api.JPushInterface;
+
 public class ReactEnterActivity extends ReactActivity implements IViewContainer {
 
 
@@ -105,6 +107,7 @@ public class ReactEnterActivity extends ReactActivity implements IViewContainer 
         //首先解析
         DMLib.getJobManager().onCreate(this);
         DMLib.getJobManager().onViewCreate(this);
+      JPushInterface.init(this);
 
     }
 
@@ -178,6 +181,7 @@ public class ReactEnterActivity extends ReactActivity implements IViewContainer 
         }
 
         SysModule.onPause();
+        JPushInterface.onPause(this);
     }
 
 
@@ -200,6 +204,7 @@ public class ReactEnterActivity extends ReactActivity implements IViewContainer 
         }
         DMLib.getJobManager().onResume(this);
         SysModule.onResume();
+      JPushInterface.onResume(this);
     }
 
     private Map<Integer, ActivityResult> actiMap;

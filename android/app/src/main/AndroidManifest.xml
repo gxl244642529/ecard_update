@@ -99,6 +99,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+    <meta-data
+        android:name="JPUSH_APPKEY"
+        android:value="${JPUSH_APPKEY}" />
+    <meta-data
+        android:name="JPUSH_CHANNEL"
+        android:value="${APP_CHANNEL}" />
+
 
         <activity android:name="com.citywithincity.activities.PinganWebActivity" android:screenOrientation="portrait"/>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"  android:screenOrientation="portrait"/>
@@ -768,9 +775,9 @@
         </receiver>
 
         <!-- Required SDK核心功能-->
-        <receiver
-            android:name="cn.jpush.android.service.AlarmReceiver"
-            android:exported="false"/>
+        <!--<receiver-->
+            <!--android:name="cn.jpush.android.service.AlarmReceiver"-->
+            <!--android:exported="false"/>-->
 
         <!-- User defined.  For test only  用户自定义的广播接收器-->
         <receiver
@@ -789,9 +796,9 @@
         </receiver>
 
 
-        <!-- Required  . Enable it you can get statistics data with channel -->
-        <meta-data android:name="JPUSH_CHANNEL" android:value="etongka"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="0fa49a7e347d301cbf2aaae9" />
+        <!--&lt;!&ndash; Required  . Enable it you can get statistics data with channel &ndash;&gt;-->
+        <!--<meta-data android:name="JPUSH_CHANNEL" android:value="etongka"/>-->
+        <!--<meta-data android:name="JPUSH_APPKEY" android:value="0fa49a7e347d301cbf2aaae9" />-->
         <!-- 值来自开发者平台取得的AppKey-->
         <meta-data
             android:name="UMENG_CHANNEL"

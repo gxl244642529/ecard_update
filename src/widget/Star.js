@@ -1,16 +1,16 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react';
 
-import {View,StyleSheet,Image} from "../../lib/Common"
+import { View, StyleSheet, Image } from '../../lib/Common';
 
-export default class Star extends Component{
-  constructor(props){
+export default class Star extends Component {
+  constructor(props) {
     super(props);
-    this.state={num:props.num  || 0};
+    this.state = { num: props.num || 0 };
   }
 
-  componentWillReceiveProps(nextProp){
-    if(nextProp.num !== this.state.num){
-      this.setState({num:nextProp.num});
+  componentWillReceiveProps(nextProp) {
+    if (nextProp.num !== this.state.num) {
+      this.setState({ num: nextProp.num });
     }
   }
 
@@ -28,28 +28,46 @@ export default class Star extends Component{
     this.setState({full:full,empty:empty});
   }*/
 
-  render(){
+  render() {
     let imgStyle;
-    if(this.props.style){
-      imgStyle=this.props.style;
-    }else{
-      imgStyle=styles.starImg;
+    if (this.props.style) {
+      imgStyle = this.props.style;
+    } else {
+      imgStyle = styles.starImg;
     }
 
     // console.log(this.state);
     let arr = [];
     let num = this.state.num;
     let num_int = Math.floor(num);
-    for(let i =1; i <= 5; ++i){
-      if(i<=num)
-        arr.push(<Image key={"star"+i} source={require("../images/star_1.png")} style={imgStyle} />);
-      else if(i==num_int+1 && num!=num_int)
-        arr.push(<Image key={"star"+i} source={require("../images/star_3.png")} style={imgStyle} />);
+    for (let i = 1; i <= 5; ++i) {
+      if (i <= num)
+        arr.push(
+          <Image
+            key={'star' + i}
+            source={require('../images/star_1.png')}
+            style={imgStyle}
+          />
+        );
+      else if (i == num_int + 1 && num != num_int)
+        arr.push(
+          <Image
+            key={'star' + i}
+            source={require('../images/star_3.png')}
+            style={imgStyle}
+          />
+        );
       else
-        arr.push(<Image key={"star"+i} source={require("../images/star_2.png")} style={imgStyle} />);
+        arr.push(
+          <Image
+            key={'star' + i}
+            source={require('../images/star_2.png')}
+            style={imgStyle}
+          />
+        );
     }
 
-    return <View style={{flexDirection:'row'}}>{arr}</View>
+    return <View style={{ flexDirection: 'row' }}>{arr}</View>;
     /*
     return <View style={{flexDirection:'row'}}>
     {
@@ -69,9 +87,9 @@ export default class Star extends Component{
   }
 }
 
-const styles=StyleSheet.create({
-  starImg:{
-    width:15,
-    height:15,
+const styles = StyleSheet.create({
+  starImg: {
+    width: 15,
+    height: 15,
   },
-})
+});
