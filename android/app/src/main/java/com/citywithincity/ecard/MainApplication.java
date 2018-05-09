@@ -20,6 +20,7 @@ import com.damai.map.LocationListener;
 import com.damai.map.LocationUtil;
 import com.damai.push.Push;
 import com.facebook.react.ReactApplication;
+import com.dylanvann.fastimage.FastImageViewPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -45,6 +46,7 @@ public class MainApplication extends ECardApplication implements ReactApplicatio
     protected List<ReactPackage> getPackages() {
       return Arrays.asList(
               new MainReactPackage(),
+            new FastImageViewPackage(),
               new ECardReactPackage(),
              new JPushPackage(SHUTDOWN_TOAST, SHUTDOWN_LOG)   //  <-- 添加 JPushPackage
 

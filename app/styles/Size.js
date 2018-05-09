@@ -15,6 +15,12 @@ export default  Size = StyleSheet.create({
   },
   fontSize10:{
     fontSize:10
-  }
+  },
+  fontSize16:{
+    fontSize:16
+  },
+  fontSize28:{
+    fontSize:28
+  },
 
 })

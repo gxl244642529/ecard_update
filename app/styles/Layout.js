@@ -11,6 +11,13 @@ export default layout = StyleSheet.create({
     paddingLeft:15,
     paddingRight:15,
   },
+  margin:{
+    margin:15
+  },
+  marginLeftRight:{
+    marginLeft:15,
+    marginRight:15,
+  },
   paddingTop:{
     paddingTop:20
   },
@@ -33,6 +40,4 @@ export default layout = StyleSheet.create({
   flex:{
     flex:1,
   }
-
-
 })

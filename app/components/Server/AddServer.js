@@ -5,24 +5,31 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Image
+ } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class AddServer extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>增值服务</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <ScrollView style={{flex:1,backgroundColor:'#f8f9fa'}}>
+        <TouchableOpacity style={{flex:1,flexDirection:'row',backgroundColor:'#fff',margin:15,borderRadius:5,padding:10}}>
+          <View style={{flex:0.8,justifyContent:'center'}}>
+            <Text style={{color:"#262626",fontSize:16}}>平安</Text>
+          </View>
+          <View style={{flex:0.2,justifyContent:'center',alignItems:'center'}}>
+              <Image source={require('./images/ser.png')} style={{width:40,height:40}} resizeMode="contain"/>
+          </View>
+        </TouchableOpacity>
+
+      </ScrollView>
     );
   }
 }

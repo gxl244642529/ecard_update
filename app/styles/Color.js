@@ -9,6 +9,9 @@ export default  color = StyleSheet.create({
   },
   largeTitleColor:{
     color:'#262626',
+  },
+  mainBackgroundCorlor:{
+    backgroundColor:'#f8f9fa'
   }
 
 })

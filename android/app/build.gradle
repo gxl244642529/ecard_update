@@ -173,6 +173,7 @@ def releaseTime() {
 }
 
 dependencies {
+    compile project(':react-native-fast-image')
     compile project(':jcore-react-native')
     compile project(':jpush-react-native')
     compile 'com.tencent.bugly:crashreport:latest.release'
