@@ -17,6 +17,7 @@ import {
 import PersonalStyle from './index.style.js'
 import LargeTitle from '../../widget/LargeTitle';
 const NEXT_ICON = require('./images/next.png');
+import container from '../GlobalStyle'
 export default class Personal extends Component<Props> {
   constructor(props){
     super(props);
@@ -59,7 +60,7 @@ export default class Personal extends Component<Props> {
 
   render() {
     return (
-      <View style={{flex:1,backgroundColor:'#f8f9fa'}}>
+      <View style={container}>
 
           {this._renderHeader()}
           <View style={{marginLeft:15,marginRight:15,marginTop:15,flexDirection:'row',justifyContent:'space-between'}}>
