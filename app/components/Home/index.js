@@ -9,16 +9,25 @@ import {
   Image,
   ScrollView,
   Dimensions,
-  ImageBackground
+  ImageBackground,
+  RefreshControl
 } from 'react-native';
 import Alert from '../../lib/Alert'
 import Sms from '../../lib/Sms'
 import Share from '../../lib/Share'
-import Api from '../../lib/network/Api'
+// import Api from '../../lib/network/Api'
 const WIDTH = Dimensions.get('window').width;
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import layout from '../../styles/Layout'
 import AdvView from '../../../src/widget/AdvView'
+import HomeStyle from './index.style.js'
+import NavHelper from '../../lib/NavHelper'
+import Api from '../../../lib/network/Api'
+import MainButton from './MainButton'
+import MenuButton from './MenuButton'
+import ActionBar from './ActionBar'
+import {onRequireLoginPress} from '../../../lib/LoginUtil'
+const refreshColors = ['#ff0000','#00ff00','#0000ff','#3ad564'];
 
 class Header extends Component{
 
@@ -43,83 +52,12 @@ class Header extends Component{
     )
   }
 }
-class MainButton extends Component{
-  constructor(props) {
-    super(props);
-  }
-  _renderMainItemButton=(data,index)=>{
-    return(
-      <TouchableOpacity style={{alignItems:'center'}} key={index} onPress={this.props.onPress}>
-          <Image source={data.thumbnail} style={{width:75,height:75}} resizeMode='contain'></Image>
-          <Text style={{marginTop:-5,fontSize:14,color:'#515151'}}>{data.title}</Text>
-        </TouchableOpacity>
-    )
-  }
-  render(){
-    const {data} = this.props;
-    return(
-      <View style={{backgroundColor:'#fff',flexDirection:'row',justifyContent:'space-around',paddingBottom:15,paddingLeft:15,paddingRight:15}}>
-        {data&&data.map(this._renderMainItemButton)}
-      </View>
-    )
-  }
-}
-class  MenuButton extends Component{
-  constructor(props) {
-    super(props);
-  }
-  _rendeItem=(data)=>{
-    return(
-      <TouchableOpacity style={{alignItems:'center',justifyContent:'center',width:150,height:60}}>
-          <Image source={data.thumbnail} style={{width:22,height:24}} resizeMode="contain"/>
-          <Text style={{marginTop:8,color:'#262626'}}>{data.title}</Text>
-      </TouchableOpacity>
-    );
-  }
-  _renderMenuItem=(data,index)=>{
-    return(
-        <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',paddingLeft:15,paddingRight:15,paddingTop:15}} key={index}>
-            {this._rendeItem(data[0])}
-            {this._rendeItem(data[1])}
-            {this._rendeItem(data[2])}
-            {this._rendeItem(data[3])}
-        </View>
-    )
-  }
-  render(){
-    const {data} = this.props;
-    var rownum = data.length/4;
-    var arr = [];
-    var j = 0;
-    for (var i = 0; i < rownum; i++) {
-      arr.push([data[j],data[j+1],data[j+2],data[j+3]])
-      j=j+4;
-    }
-    return(
-      <View style={{backgroundColor:'#fff',marginTop:5}}>
-          {arr&&arr.map(this._renderMenuItem)}
-      </View>
-    );
-  }
-}
-class  ActionBar extends Component{
-  constructor(props) {
-    super(props);
-  }
-  render(){
-    return(
-      <TouchableOpacity style={{flex:1,flexDirection:'row',paddingLeft:20,paddingRight:20,paddingTop:30,paddingBottom:30,justifyContent:'space-between',alignItems:'center',}}>
-        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',alignSelf:'center'}}>
-          <Image style={{width:48,height:48}} resizeMode="contain" source={require('./images/titleicon.png')}></Image>
-          <View style={{height:40}}><Text style={{color:'#515151',padding:5}}>绿色出行</Text></View>
-        </View>
-        <Image style={{width:48,height:48}} resizeMode="contain" source={require('./images/title.png')}></Image>
-      </TouchableOpacity>
-    );
-  }
 
-}
+
 export default class  Home extends Component{
+  static navigationOptions = {
+      header:null,
+  }
   constructor(props) {
     super(props);
     let images = [
@@ -127,22 +65,7 @@ export default class  Home extends Component{
       {thumbnail:require('./images/card_d1.png')} ,
       {thumbnail:require('./images/card_d1.png')} ,
     ];
-    let mainImg = [
-      {thumbnail:require('./images/recharge.png'),title:"卟噔充值"} ,
-      {thumbnail:require('./images/buy.png'),title:"买卡"} ,
-      {thumbnail:require('./images/myecard.png'),title:"我的e通卡"} ,
-      {thumbnail:require('./images/openlost.png'),title:"挂失服务"} ,
-    ];
-    let menuImg =[
-      {thumbnail:require('./images/discard.png'),title:"优惠卡办理",ismore:false} ,
-      {thumbnail:require('./images/exam.png'),title:"年审",ismore:false} ,
-      {thumbnail:require('./images/ticket.png'),title:"电子发票",ismore:false} ,
-      {thumbnail:require('./images/netpot.png'),title:"网点查询",ismore:false} ,
-      {thumbnail:require('./images/blue.png'),title:"蓝牙充值",ismore:false} ,
-      {thumbnail:require('./images/lost.png'),title:"拾卡不昧",ismore:false} ,
-      {thumbnail:require('./images/bus.png'),title:"公交查询",ismore:false} ,
-      {thumbnail:require('./images/more.png'),title:"更多",ismore:true} ,
-    ]
+
     let advdata = [
       {img:'http://110.80.22.108:8887/uploads/2018_04_26/8e7afcb27697fe7458fc3092a5842070.jpg',url:'https://www.baidu.com/',title:"测试"},
       {img:'http://110.80.22.108:8887/uploads/2018_04_26/8e7afcb27697fe7458fc3092a5842070.jpg',url:'https://www.baidu.com/',title:"测试"}
@@ -150,27 +73,29 @@ export default class  Home extends Component{
 
     this.state={
       entries:images,
-      mainImg:mainImg,
-      menuImg:menuImg
+      isRefreshing:true,
     }
 
   }
   componentDidMount(){
-        console.log(WIDTH)
+      this._onRefresh();
   }
+  _onRefresh=()=>{
+    let data = {channel:'app',gCodes:"main,sub,action"}
+    Api.detail(this,{
+     api:'acc_base/modules',
+     data:data,
+     success:this._loadComplete,
+     error:this._loadComplete,
+     message:this._loadComplete
+   });
+  }
+  _loadComplete=()=>{
+   this.setState({isRefreshing:false});
+ }
   _onPress=()=>{
-    let update = {curd:"update",data:{table:"adv",fields:[{field:"AD_TITLE",value:"修改标题"}],condition:[{field:"AD_ID",sign:"=",value:"0"}]}}
-    let fetch= {curd:"fetch",data:{table:"adv",fields:"AD_ID,AD_TITLE",condition:[{field:"AD_ID",sign:"=",value:"0"}]}}
-    let data = {list:[update,fetch]}
-
-    Api.api({
-      api:"curd/curdSet",
-      data:data,
-      success:(result)=>{
-        console.log(result);
-      }
-    })
-
+    console.log("测试")
+    NavHelper.push('Test1');
   }
   _renderCardItem ({item, index}, parallaxProps) {
     return (
@@ -186,13 +111,24 @@ export default class  Home extends Component{
         </TouchableOpacity>
     );
 }
+renderRefresh=()=>{
+  return (
+    <RefreshControl
+        refreshing={this.state.isRefreshing}
+        onRefresh={this._onRefresh}
+        colors={refreshColors}
+        progressBackgroundColor="#ffffff"
+      />
+  );
+}
   render() {
+     const refresh = this.renderRefresh();
      return (
-       <View style={{backgroundColor:'#f3f4f5'}}>
+       <View style={{flex:1,backgroundColor:'#f3f4f5'}}>
 
           <Header onPress={()=>{this._onPress()}}/>
 
-          <ScrollView style={{backgroundColor:'#fff',paddingTop:6}}>
+          <ScrollView style={{backgroundColor:'#fff',paddingTop:6}}   refreshControl={refresh}>
             <Carousel
               data={this.state.entries}
               renderItem={this._renderCardItem}
@@ -200,31 +136,12 @@ export default class  Home extends Component{
               itemWidth={310}
               hasParallaxImages={true}
             />
-            <MainButton data={this.state.mainImg}/>
-            <MenuButton data={this.state.menuImg}/>
-            <ActionBar />
+            <MainButton data={this.state.main}/>
+            <MenuButton data={this.state.sub}/>
+            <ActionBar  data={this.state.action}/>
             <AdvView ref="ADV" data={this.state.advdata} width={300} height={300}/>
           </ScrollView>
        </View>
      );
    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#eaeaeb',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
