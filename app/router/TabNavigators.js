@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {StackNavigator,TabNavigator} from 'react-navigation'
-import Home from '../components/Home'
+// import Home from '../components/Home'
+import Home from '../connects/Home'
 import Licai from '../components/Licai'
 import Server from '../components/Server'
 import Personal from '../components/Personal'
@@ -20,47 +21,17 @@ import {
   My_Fou,My_NoFou
 } from '../resources/ImageResources'
 
-const LicaiTab = TabNavigator({
-  Recommend:{
-    screen :Recommend,
-    navigationOptions:{
-      tabBarLabel:'理财推介'
-    }
-  },
-  Introduce:{
-    screen :Introduce,
-    navigationOptions:{
-      tabBarLabel:'惠民理财说'
-    }
-  },
-},{tabBarPosition: 'top',  // 设置tabbar的位置，iOS默认在底部，安卓默认在顶部。（属性值：'top'，'bottom')
-    swipeEnabled:true, // 是否允许在标签之间进行滑动。
-    animationEnabled: false, // 是否在更改标签时显示动画。
-    lazy:true, // 是否根据需要懒惰呈现标签，而不是提前制作，意思是在app打开的时候将底部标签栏全部加载，默认false,推荐改成true哦。
-    initialRouteName:'', // 设置默认的页面组件
-    backBehavior:'none',
-    tabBarOptions:{
-      showIcon:false,
-      activeTintColor:'#262626',
-      inactiveTintColor:'#262626',
-      style:{backgroundColor:'#ffffff',paddingTop:6.5,},
-      labelStyle: {fontSize:15,marginTop:3},
-      indicatorStyle:{height:3,backgroundColor:'#fe9026',},
-      tabStyle:{width:110}
-  }})
-
 
 
 export default HomeTab = TabNavigator({
 
-
-    Licai: {
-        screen:Licai,
-        navigationOptions: ()=> TabOptions('理财',Licai_NoFou,Licai_Fou,'理财'),
-    },
     Home: {
         screen: Home,
         navigationOptions: ()=> TabOptions('首页',Home_NoFou,Home_Fou,'首页'),
+    },
+    Licai: {
+        screen:Licai,
+        navigationOptions: ()=> TabOptions('理财',Licai_NoFou,Licai_Fou,'理财'),
     },
     Server: {
         screen:Server,
@@ -70,6 +41,7 @@ export default HomeTab = TabNavigator({
         screen:Personal,
         navigationOptions: (navigation)=> TabOptions('我的',My_NoFou,My_Fou,'我的'),
     },
+
 },{
     tabBarPosition:'bottom', // 设置tabbar的位置，iOS默认在底部，安卓默认在顶部。（属性值：'top'，'bottom')
     swipeEnabled:true, // 是否允许在标签之间进行滑动。

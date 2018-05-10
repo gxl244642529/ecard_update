@@ -4,13 +4,12 @@ import { NavigationActions } from 'react-navigation';
 import * as counterAction from '../actions/CounterAction';
 import Main from '../components/Home';
 
-
-export default  Home = connect(
+export default Test1 = connect(
   state => ({
-    // counter: state.counter.count,
+    counter: state.counter.count,
   }),
   dispatch => ({
-    // incrementFn: () => dispatch(counterAction.increment()),
-    // decrementFn: () => dispatch(counterAction.decrement()),
+    incrementFn: () => dispatch(counterAction.increment()),
+    decrementFn: () => dispatch(counterAction.decrement()),
   })
-)(Main);
+)(Test);

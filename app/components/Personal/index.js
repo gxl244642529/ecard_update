@@ -15,10 +15,14 @@ import {
   TouchableOpacity
 } from 'react-native';
 import PersonalStyle from './index.style.js'
+import GlobalStyle from '../GlobalStyle'
 import LargeTitle from '../../widget/LargeTitle';
 const NEXT_ICON = require('./images/next.png');
-import container from '../GlobalStyle'
 export default class Personal extends Component<Props> {
+  // static navigationOptions=({navigation})=>{
+  //   headerTitle:navigation.state.params.headerTitle
+  // }
+
   constructor(props){
     super(props);
     let item=[
@@ -33,25 +37,25 @@ export default class Personal extends Component<Props> {
   }
   _rendeItem=(data,index)=>{
     return(
-      <TouchableOpacity key={index} style={{marginLeft:15,marginRight:15,marginTop:10,padding:15,flexDirection:'row',justifyContent:'space-between',backgroundColor:'#fff',borderRadius:5}}>
-        <Text style={{color:'#262626',fontSize:16}}>{data.title}</Text>
-        <Image source={require('./images/next.png')} style={{width:24,height:24}} resizeMode="contain"/>
+      <TouchableOpacity key={index} style={PersonalStyle.item}>
+        <Text style={PersonalStyle.itemtext}>{data.title}</Text>
+        <Image source={require('./images/next.png')} style={PersonalStyle.nextIcon} resizeMode="contain"/>
       </TouchableOpacity>
     )
   }
   _renderHeader=()=>{
     return(
-        <View style={{flexDirection:'row',backgroundColor:'#fff',paddingBottom:10}}>
-          <View style={{marginLeft:15,marginRight:15,flex:1,flexDirection:'row',justifyContent:'space-between'}}>
-            <View style={{flex:0.8}}>
-                <Text style={{fontSize:28,color:'#262626'}}>个人中心</Text>
-                <View style={{flexDirection:'row',alignItems:'center'}}>
-                  <Text style={{fontSize:16,color:'#262626'}}>184*****681</Text>
-                  <Image source={require('./images/noreal.png')} style={{width:50,height:16,marginLeft:5}} resizeMode="stretch"/>
+        <View style={PersonalStyle.headerView}>
+          <View style={PersonalStyle.headerViewflex}>
+            <View style={PersonalStyle.flex8}>
+                <Text style={GlobalStyle.largeText}>个人中心</Text>
+                <View style={PersonalStyle.phoneView}>
+                  <Text style={GlobalStyle.commonText}>184*****681</Text>
+                  <Image source={require('./images/noreal.png')} style={PersonalStyle.realFlag} resizeMode="stretch"/>
                 </View>
             </View>
-            <View style={{flex:0.2,alignItems:'center'}}>
-                <Image source={require('../Home/images/head.png')} style={{height:50,width:50,borderRadius:7}} resizeMode="stretch"/>
+            <View style={PersonalStyle.flex2}>
+                <Image source={require('../Home/images/head.png')} style={PersonalStyle.headerImg} resizeMode="stretch"/>
             </View>
           </View>
       </View>
@@ -60,7 +64,7 @@ export default class Personal extends Component<Props> {
 
   render() {
     return (
-      <View style={container}>
+      <View style={GlobalStyle.container}>
 
           {this._renderHeader()}
           <View style={{marginLeft:15,marginRight:15,marginTop:15,flexDirection:'row',justifyContent:'space-between'}}>
@@ -80,22 +84,3 @@ export default class Personal extends Component<Props> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

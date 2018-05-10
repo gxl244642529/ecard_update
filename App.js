@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import {StatusBar} from 'react-native'
 import configureStore from './app/Store';
 import ReactNavigationPlugin from './app/lib/ReactNavigationPlugin';
 import NavHelper from './app/lib/NavHelper';
@@ -13,6 +14,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
+
         <Push>
           <Navigation />
         </Push>

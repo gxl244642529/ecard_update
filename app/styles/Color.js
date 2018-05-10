@@ -3,15 +3,15 @@ import{
   StyleSheet
 } from 'react-native'
 
-export default  color = StyleSheet.create({
-  backgroundColor:{
-    backgroundColor:'#fff',
-  },
-  largeTitleColor:{
-    color:'#262626',
-  },
-  mainBackgroundCorlor:{
-    backgroundColor:'#f8f9fa'
-  }
 
-})
+const white = '#fff';
+const largeTitleColor = '#262626';
+const backgroundColor = '#f8f9fa';
+
+const Color={
+  white,
+  largeTitleColor,
+  backgroundColor
+};
+
+module.exports = Color;

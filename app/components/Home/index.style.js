@@ -1,10 +1,9 @@
 import {
   StyleSheet
 } from 'react-native'
-import GlobalStyle from '../GlobalStyle'
 import {Layout,Size,Color} from '../../styles'
 
-export default  PersonalStyle = StyleSheet.create({
+export default  HomeStyle = StyleSheet.create({
   item:{
     marginLeft:Layout.commonRange,
     marginRight:Layout.commonRange,
