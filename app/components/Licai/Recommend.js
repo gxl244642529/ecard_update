@@ -15,6 +15,9 @@ import {
   TouchableOpacity
 } from 'react-native';
 import LargeTitle from '../../widget/LargeTitle'
+import AdvView from '../../widget/AdvView'
+import Modules from '../Modules'
+import GlobalStyle from '../GlobalStyle'
 class ProductList extends Component{
   constructor(props) {
     super(props)
@@ -79,16 +82,22 @@ export default class Recommend extends Component<Props> {
     this.state={
       products:products,
       selects:selects,
+      isRefreshing:true,
     }
+  }
+  _loadComplete=()=>{
+    this.setState(result);
+    this.setState({})
   }
   render() {
     return (
-     <ScrollView style={{flex:1,backgroundColor:'#f8f9fa'}}>
-        <View style={{backgroundColor:"red",margin:15,height:150,borderRadius:5}}>
-        </View>
-        <SelectList data={this.state.selects}/>
-        <ProductList data={this.state.products}/>
-      </ScrollView>
+      <Modules gCodes="licaiselect,licaiproducts" _loadComplete={this._loadComplete}>
+       <ScrollView style={GlobalStyle.container}  refreshControl={refresh}>
+          <AdvView id="licai" height={150}/>
+          <SelectList data={this.state.selects}/>
+          <ProductList data={this.state.products}/>
+        </ScrollView>
+      </Modules>
     );
   }
 }
