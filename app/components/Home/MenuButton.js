@@ -46,7 +46,7 @@ export default class  MenuButton extends Component{
       j=j+4;
     }
     return(
-      <View style={{backgroundColor:'#fff',marginTop:5}}>
+      <View style={{backgroundColor:'#fff',marginLeft:15,marginRight:15,marginTop:15,borderRadius:5}}>
           {arr&&arr.map(this._renderMenuItem)}
       </View>
     );
