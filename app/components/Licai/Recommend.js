@@ -5,24 +5,99 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View ,
+  ScrollView,
+  Image,
+  TouchableOpacity
+} from 'react-native';
+import LargeTitle from '../../widget/LargeTitle'
+import AdvView from '../../widget/AdvView'
+import Modules from '../Modules'
+import GlobalStyle from '../GlobalStyle'
+class ProductList extends Component{
+  constructor(props) {
+    super(props)
+  }
+  _onPress=()=>{
+  }
+  _rendeItem=(data,index)=>{
+    return  <TouchableOpacity onPress={this._onPress} key={index}>
+      <Text style={{fontSize:10,color:'#808080'}}>{data.title}</Text>
+      <Image style={{height:90,width:330}} resizeMode="stretch" source={data.img}/>
+    </TouchableOpacity>
+  }
+  render(){
+    const {data} = this.props;
+    return(
+        <View style={{marginTop:10,marginLeft:15,marginRight:15}}>
+          {data&&data.map(this._rendeItem)}
+        </View>
+    );
+  }
+}
+class SelectList extends Component{
+  constructor(props) {
+    super(props)
+  }
+  _onPress=()=>{
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+  }
+  _rendeItem=(data,index)=>{
+    console.log(data);
+    return(
+      <TouchableOpacity onPress={this._onPress} key={index}>
+        <Image style={{width:170,height:107}} source={data.img} resizeMode="stretch"/>
+      </TouchableOpacity>
+    );
+  }
+  render(){
+    const {data} = this.props;
+    return(
+      <View style={{paddingTop:10,marginLeft:15,marginRight:15}}>
+        <Text style={{fontSize:10,color:'#808080'}}>精选理财</Text>
+        <ScrollView horizontal={true}>
+          {data&&data.map(this._rendeItem)}
+        </ScrollView>
+      </View>
+    )
+  }
+}
 
-type Props = {};
-export default class App extends Component<Props> {
+
+export default class Recommend extends Component<Props> {
+  constructor(props){
+    super(props);
+    let products = [
+      {title:'浙金理财',img:require('./images/pro.png'),url:'https://www.baidu.com'},
+      {title:'浙金理财',img:require('./images/pro.png'),url:'https://www.baidu.com'},
+    ];
+    let selects = [
+      {img:require('./images/select.png'),url:'https://www.baidu.com'},
+      {img:require('./images/select.png'),url:'https://www.baidu.com'},
+    ]
+    this.state={
+      products:products,
+      selects:selects,
+      isRefreshing:true,
+    }
+  }
+  _loadComplete=()=>{
+    this.setState(result);
+    this.setState({})
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>理财推介</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <Modules gCodes="licaiselect,licaiproducts" _loadComplete={this._loadComplete}>
+       <ScrollView style={GlobalStyle.container}  refreshControl={refresh}>
+          <AdvView id="licai" height={150}/>
+          <SelectList data={this.state.selects}/>
+          <ProductList data={this.state.products}/>
+        </ScrollView>
+      </Modules>
     );
   }
 }

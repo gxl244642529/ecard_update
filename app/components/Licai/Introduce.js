@@ -5,24 +5,46 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Image
+} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class Introduce extends Component<Props> {
+  _rendeItem(data,index){
+    return(
+      <TouchableOpacity style={{flex:1,flexDirection:'row',justifyContent:'space-between',margin:15,borderRadius:5,backgroundColor:'#fff',padding:10}}>
+        <View style={{flex:0.7,justifyContent:'center'}}>
+          <Text style={{color:"#262626",fontSize:16}}>{data.mainTitle}</Text>
+          <Text style={{color:"#808080",fontSize:12}}>{data.intro}</Text>
+        </View>
+        <View style={{flex:0.3,justifyContent:'center',alignItems:'center'}}>
+            <Image source={data.img} style={{width:69,height:50}} resizeMode="contain"/>
+        </View>
+
+      </TouchableOpacity>
+    )
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>理财推介</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <ScrollView style={{flex:1,backgroundColor:'#f8f9fa'}}>
+        <View style={{flex:1,flexDirection:'row',justifyContent:'space-between',margin:15,borderRadius:5,backgroundColor:'#fff',padding:10 }}>
+          <View style={{flex:0.7,justifyContent:'center'}}>
+            <Text style={{color:"#262626",fontSize:16}}>上班珠海华发</Text>
+            <Text style={{color:"#808080",fontSize:12}}>上班珠海华发客流量卡</Text>
+          </View>
+          <View style={{flex:0.3,justifyContent:'center',alignItems:'center'}}>
+              <Image source={require('./images/intro.png')} style={{width:69,height:50}} resizeMode="contain"/>
+          </View>
+
+        </View>
+      </ScrollView>
     );
   }
 }

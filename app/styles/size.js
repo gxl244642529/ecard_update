@@ -3,15 +3,17 @@ import{
   StyleSheet
 } from 'react-native'
 
+const fontSize10 = 10;
+const fontSize14 = 14;
+const fontSize16 = 16;
+const fontSize28 = 28;
 
 
-export default  Size = StyleSheet.create({
-  LargeTitleSize28:{
-    fontSize:28,
-    fontWeight:'300',
-  },
-  fontSize14:{
-    fontSize:14
-  }
+const Size = {
+  fontSize10,
+  fontSize14,
+  fontSize16,
+  fontSize28,
+}
 
-})
+module.exports = Size;

@@ -36,6 +36,7 @@ export default class LargeTitle extends Component {
             headerTitleStyle: [layout.alignSelf,size.fontSize14,{opacity:opacity}],
             headerTitle:this.props.title
           })
+            this.props.onScroll&&this.props.onScroll();
       }else{
           this.props.navigation.setParams({headerTitle:''})
       }
@@ -43,7 +44,7 @@ export default class LargeTitle extends Component {
     render() {
         const { navigate } = this.props.navigation;
         return (
-          <ScrollView onScroll={this.onScroll} style={color.backgroundColor}>
+          <ScrollView onScroll={this.onScroll} style={[color.backgroundColor,layout.flex]}>
             <View style={layout.paddingLeft}>
               <Text style={[color.largeTitleColor,size.LargeTitleSize28]}>{this.props.title}</Text>
             </View>

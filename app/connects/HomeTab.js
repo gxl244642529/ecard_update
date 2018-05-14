@@ -1,11 +1,10 @@
-import Test from '../components/Test';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import * as counterAction from '../actions/CounterAction';
-import Main from '../components/Home';
+import HomeTab from '../router/TabNavigators';
 
 
-export default  Home = connect(
+export default  HomeTabConnect = connect(
   state => ({
     // counter: state.counter.count,
   }),
@@ -13,4 +12,4 @@ export default  Home = connect(
     // incrementFn: () => dispatch(counterAction.increment()),
     // decrementFn: () => dispatch(counterAction.decrement()),
   })
-)(Main);
+)(HomeTab);

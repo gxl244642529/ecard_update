@@ -22,10 +22,11 @@ import Server from '../components/Server'
 import Personal from '../components/Personal'
 import Recommend from '../components/Licai/Recommend'
 import Introduce from '../components/Licai/Introduce'
-import Test from '../components/Test'
+import Test1 from '../components/Test'
 import TestGesture from '../components/TestGesture'
 import TestJpush from '../components/TestJpush'
-import HomeTab from './TabNavigators'
+// import HomeTab from './TabNavigators'
+import HomeTab from '../connects/HomeTab'
 // import RouterTest from '../components/ReactRouter/RouterTest'
 
 import {
@@ -59,8 +60,14 @@ export default  AppNavigator = StackNavigator({
   //   screen:TestJpush,
   //
   // },
+
   HomeTab: {screen: HomeTab,
-  navigationOptions:{
-      header:null,
-    }},
+  navigationOptions: ({navigation}) => StackOptions({navigation})
+  },
+  Test1:{
+    screen:Test1,
+  },
+  Licai:{
+    screen:Licai,
+  }
 },{ navigationOptions: ({navigation}) => StackOptions({navigation})});
